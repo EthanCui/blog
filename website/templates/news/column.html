@@ -1,48 +1,109 @@
 {% extends "base.html" %}
 {% load staticfiles %}
- 
+
 {% block title %}
-{{ column.title }}
+    {{ column.title }}
 {% endblock title %}
- 
+
+{% block home_Nav %}
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home"></i>
+            <span>首页</span>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li>
+            <span>栏目</span>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li>
+            <span>{{ column.name }}</span>
+        </li>
+    </ul>
+{% endblock %}
+
 {% block content %}
- 							<div class="span9 article-block">
-								<h2>{{ column.name }}</h2>
-栏目简介：{{ column.intro }}
-栏目文章列表：
-{% for artile in column.article_set.all %}
-    								<div class="row-fluid">
-									<div class="span4 blog-img blog-tag-data">
-                                        {% if forloop.counter|divisibleby:2 %}
-                                            <img src="{% static "media/image/image4.jpg" %}" alt="">
-                                        {% else %}
-                                            <img src="{% static "media/image/image3.jpg" %}" alt="">
-                                        {% endif %}
-									</div>
-									<div class="span8 blog-article">
-										<h2><a href="{{ artile.get_absolute_url }}">{{ artile.title }}</a></h2>
-										<p>{{ artile.content | safe }}</p>
-										<a class="btn blue" href="{{ artile.get_absolute_url }}">
-										Read more
-										<i class="m-icon-swapright m-icon-white"></i>
-										</a>
-                                        <ul class="unstyled inline">
-											<li><i class="icon-calendar"></i> <a href="#">April 16, 2013</a></li>
-											<li><i class="icon-comments"></i> <a href="#">38 Comments</a></li>
-										</ul>
-										<ul class="unstyled inline blog-tags">
-											<li>
-												<i class="icon-tags"></i>
-												<a href="#">Technology</a>
-												<a href="#">Education</a>
-												<a href="#">Internet</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-{% endfor %}
-								<hr>
-							</div>
-							<!--end span9-->
+    <div class="span9 article-block">
+        <h2>{{ column.name }}</h2>
+        栏目简介：{{ column.intro }}
+        栏目文章列表：
+        {% for article in articles %}
+            <div class="row-fluid">
+                <div class="span8 blog-article">
+                    <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
+                    <ul class="unstyled inline">
+                        <li><i class="icon-calendar"></i> {{ article.pub_date }}</li>
+                    </ul>
+                    <ul class="unstyled inline blog-tags">
+                        {% for tag in article.tags.all %}
+                            <li><i class="icon-tags"></i> {{ tag.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+        <hr>
+    </div>
+    <!--end span9-->
 {% endblock content %}
+
+{% block topArticles %}
+    {% for article in topArticles %}
+        {% if forloop.counter0 == 0 %}
+                        <a href="{{ article.get_absolute_url }}" class="btn red">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Money, Business, Google
+                        </em>
+                        <i class="icon-briefcase top-news-icon"></i>
+                    </a>
+        {% endif %}
+        {% if forloop.counter0 == 1 %}
+                    <a href="{{ article.get_absolute_url }}" class="btn green">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Internet, Music, People
+                        </em>
+                        <i class="icon-music top-news-icon"></i>
+                    </a>
+        {% endif %}
+        {% if forloop.counter0 == 2 %}
+                    <a href="{{ article.get_absolute_url }}" class="btn blue">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Internet, Music, People
+                        </em>
+                        <i class="icon-music top-news-icon"></i>
+                    </a>
+        {% endif %}
+        {% if forloop.counter0 == 3 %}
+                    <a href="{{ article.get_absolute_url }}" class="btn yellow">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Internet, Music, People
+                        </em>
+                        <i class="icon-music top-news-icon"></i>
+                    </a>
+        {% endif %}
+        {% if forloop.counter0 == 3 %}
+                    <a href="{{ article.get_absolute_url }}" class="btn purple">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Internet, Music, People
+                        </em>
+                        <i class="icon-music top-news-icon"></i>
+                    </a>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
 

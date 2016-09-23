@@ -13,8 +13,8 @@ class Column(models.Model):
     slug = models.CharField('栏目网址', max_length=256, db_index=True)
     intro = models.TextField('栏目简介', default='')
 
-    nav_display = models.BooleanField('导航显示', default=False)
-    home_display = models.BooleanField('首页显示', default=False)
+    news_nav = models.BooleanField('新闻导航', default=False)
+    blog_nav = models.BooleanField('博客导航', default=False)
 
     def __str__(self):
         return self.name
@@ -26,11 +26,22 @@ class Column(models.Model):
         verbose_name = '栏目'
         verbose_name_plural = '栏目'
         ordering = ['name']  # 按照哪个栏目排序
- 
+
+@python_2_unicode_compatible
+class Tag(models.Model):
+    name =  models.CharField('名称', max_length=16)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = '标签'
+        verbose_name_plural = '标签'
  
 @python_2_unicode_compatible
 class Article(models.Model):
     column = models.ManyToManyField(Column, verbose_name='归属栏目')
+    tags = models.ManyToManyField(Tag, verbose_name='标签')
  
     title = models.CharField('标题', max_length=256)
     slug = models.CharField('网址', max_length=256, db_index=True)
@@ -52,5 +63,5 @@ class Article(models.Model):
         return reverse('article', args=(self.pk, self.slug,))
  
     class Meta:
-        verbose_name = '教程'
-        verbose_name_plural = '教程'
+        verbose_name = '博文'
+        verbose_name_plural = '博文'

@@ -5,6 +5,23 @@
     {{ article.title }}
 {% endblock title %}
 
+{% block home_Nav %}
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home"></i>
+            <span>首页</span>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li>
+            <span>博文</span>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li>
+            <span>{{ article.title }}</span>
+        </li>
+    </ul>
+{% endblock %}
+
 {% block content %}
     <div class="span9 article-block">
         <h2>{{ article.title }}</h2>
@@ -15,18 +32,15 @@
             <div class="row-fluid">
                 <div class="span6">
                     <ul class="unstyled inline blog-tags">
-                        <li>
-                            <i class="icon-tags"></i>
-                            <a href="#">Technology</a>
-                            <a href="#">Education</a>
-                            <a href="#">Internet</a>
-                        </li>
+                        {% for tag in article.tags.all %}
+                            <li><i class="icon-tags"></i> {{ tag }} </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="span6 blog-tag-data-inner">
                     <ul class="unstyled inline">
-                        <li><i class="icon-calendar"></i> <a href="#">April 16, 2013</a></li>
-                        <li><i class="icon-comments"></i> <a href="#">38 Comments</a></li>
+                        <li><i class="icon-calendar"></i> {{ article.pub_date }} </li>
+                        <li><i class="icon-comments"></i> {{ comments | length }} comments</li>
                     </ul>
                 </div>
             </div>
@@ -73,42 +87,44 @@
                 <!--end media-->
                 <hr>
                 {% for comment in comments %}
-                <div class="media">
-                    <a href="#" class="pull-left">
-                        <img alt="" src="{% static "media/image/7.jpg" %}" class="media-object">
-                    </a>
+                    <div class="media">
+                        <a href="#" class="pull-left">
+                            <img alt="" src="{% static "media/image/7.jpg" %}" class="media-object">
+                        </a>
 
-                    <div class="media-body">
-                        <h4 class="media-heading">{{ comment.user_name }} <span>2 days ago / <a href="#">Reply</a></span></h4>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ comment.user_name }} <span>2 days ago / <a
+                                    href="#">Reply</a></span></h4>
 
-                        <p>{{ comment.comment }}</p>
+                            <p>{{ comment.comment }}</p>
+                        </div>
                     </div>
-                </div>
                 {% endfor %}
                 <!--end media-->
             </div>
         </div>
         <!--end media-->
-    {% for comment in comments %}
-        <div class="media">
-            <a href="#" class="pull-left">
-                <img alt="" src="{% static "media/image/6.jpg" %}" class="media-object">
-            </a>
+        {% for comment in comments %}
+            <div class="media">
+                <a href="#" class="pull-left">
+                    <img alt="" src="{% static "media/image/6.jpg" %}" class="media-object">
+                </a>
 
-            <div class="media-body">
-                <h4 class="media-heading">{{ comment.user_name }} 说：<span>July 5,2013 / <a href="#">Reply</a></span></h4>
+                <div class="media-body">
+                    <h4 class="media-heading">{{ comment.user_name }} 说：<span>July 5,2013 / <a href="#">Reply</a></span>
+                    </h4>
 
-                <p>{{ comment.comment }}</p>
+                    <p>{{ comment.comment }}</p>
+                </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
         <!--end media-->
         <hr>
         <div class="post-comment">
             <h3>Leave a Comment</h3>
 
             {% csrf_token %}
-            <form action="comment"method="post">
+            <form action="comment" method="post">
                 <label>Name</label>
                 <input name="name" type="text" class="span7 m-wrap">
                 <label>Email <span class="color-red">*</span></label>
@@ -121,10 +137,65 @@
                 </p>
             </form>
         </div>
-    <div>
-        {% load duoshuo_tags %}
-        {% duoshuo_comments %}
-        {% duoshuo_comments '其他short name' %}
-    </div>
     </div>
 {% endblock content %}
+
+{% block topArticles %}
+    {% for article in topArticles %}
+        {% if forloop.counter0 == 0 %}
+                        <a href="{{ article.get_absolute_url }}" class="btn red">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Money, Business, Google
+                        </em>
+                        <i class="icon-briefcase top-news-icon"></i>
+                    </a>
+        {% endif %}
+        {% if forloop.counter0 == 1 %}
+                    <a href="{{ article.get_absolute_url }}" class="btn green">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Internet, Music, People
+                        </em>
+                        <i class="icon-music top-news-icon"></i>
+                    </a>
+        {% endif %}
+        {% if forloop.counter0 == 2 %}
+                    <a href="{{ article.get_absolute_url }}" class="btn blue">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Internet, Music, People
+                        </em>
+                        <i class="icon-music top-news-icon"></i>
+                    </a>
+        {% endif %}
+        {% if forloop.counter0 == 3 %}
+                    <a href="{{ article.get_absolute_url }}" class="btn yellow">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Internet, Music, People
+                        </em>
+                        <i class="icon-music top-news-icon"></i>
+                    </a>
+        {% endif %}
+        {% if forloop.counter0 == 3 %}
+                    <a href="{{ article.get_absolute_url }}" class="btn purple">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Internet, Music, People
+                        </em>
+                        <i class="icon-music top-news-icon"></i>
+                    </a>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

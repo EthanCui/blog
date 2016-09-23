@@ -1,13 +1,29 @@
 {% extends "base.html" %}
 {% load staticfiles %}
- 
+
 {% block title %}
-免责声明
+    免责声明
 {% endblock title %}
- 
+
+{% block home_Nav %}
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home"></i>
+            <span>首页</span>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li>
+            <span>免责声明</span>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li>
+            <span>{{ column.name }}</span>
+        </li>
+    </ul>
+{% endblock %}
+
 {% block content %}
-   <div class="span9 article-block">
-        <h2>免责声明</h2>
+    <div class="span9 article-block">
         <!--end news-tag-data-->
         <div>
             <p></p>
@@ -22,3 +38,62 @@
     </div>
 {% endblock content %}
 
+{% block topArticles %}
+    {% for article in topArticles %}
+        {% if forloop.counter0 == 0 %}
+                        <a href="{{ article.get_absolute_url }}" class="btn red">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Money, Business, Google
+                        </em>
+                        <i class="icon-briefcase top-news-icon"></i>
+                    </a>
+        {% endif %}
+        {% if forloop.counter0 == 1 %}
+                    <a href="{{ article.get_absolute_url }}" class="btn green">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Internet, Music, People
+                        </em>
+                        <i class="icon-music top-news-icon"></i>
+                    </a>
+        {% endif %}
+        {% if forloop.counter0 == 2 %}
+                    <a href="{{ article.get_absolute_url }}" class="btn blue">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Internet, Music, People
+                        </em>
+                        <i class="icon-music top-news-icon"></i>
+                    </a>
+        {% endif %}
+        {% if forloop.counter0 == 3 %}
+                    <a href="{{ article.get_absolute_url }}" class="btn yellow">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Internet, Music, People
+                        </em>
+                        <i class="icon-music top-news-icon"></i>
+                    </a>
+        {% endif %}
+        {% if forloop.counter0 == 3 %}
+                    <a href="{{ article.get_absolute_url }}" class="btn purple">
+                        <span>{{ article.title }}</span>
+                        <em>Posted on: {{ article.pub_date }}</em>
+                        <em>
+                            <i class="icon-tags"></i>
+                            Internet, Music, People
+                        </em>
+                        <i class="icon-music top-news-icon"></i>
+                    </a>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

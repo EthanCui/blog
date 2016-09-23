@@ -6,7 +6,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8"/>
-    <title>Metronic | Pages - Blog Post</title>
+    <title>EthanCui</title>
     {% load staticfiles %}
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta content="" name="description"/>
@@ -32,366 +32,302 @@
 <body class="page-header-fixed">
 <!-- BEGIN HEADER -->
 <div class="header navbar navbar-inverse navbar-fixed-top">
-<!-- BEGIN TOP NAVIGATION BAR -->
-<div class="navbar-inner">
-<div class="container-fluid">
-<!-- BEGIN LOGO -->
-<a class="brand" href="index.html">
-    <img src="{% static "media/image/logo.png" %}" alt="logo"/>
-</a>
-<!-- END LOGO -->
-<!-- BEGIN RESPONSIVE MENU TOGGLER -->
-<a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
-    <img src="{% static "media/image/menu-toggler.png" %}" alt=""/>
-</a>
-<!-- END RESPONSIVE MENU TOGGLER -->
-</div>
-</div>
-<!-- END TOP NAVIGATION BAR -->
+    <!-- BEGIN TOP NAVIGATION BAR -->
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <!-- BEGIN LOGO -->
+            <a class="brand" href="index.html">
+                <img src="{% static "media/image/logo.png" %}" alt="logo"/>
+            </a>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+                <img src="{% static "media/image/menu-toggler.png" %}" alt=""/>
+            </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+        </div>
+    </div>
+    <!-- END TOP NAVIGATION BAR -->
 </div>
 <!-- END HEADER -->
 <!-- BEGIN CONTAINER -->
 <div class="page-container row-fluid">
 <!-- BEGIN SIDEBAR -->
 <div class="page-sidebar nav-collapse collapse">
-<!-- BEGIN SIDEBAR MENU -->
-<ul class="page-sidebar-menu">
-<li>
-    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-    <div class="sidebar-toggler hidden-phone"></div>
-    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-</li>
-<li>
-    <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-    <form class="sidebar-search">
-        <div class="input-box">
-            <a href="javascript:;" class="remove"></a>
-            <input type="text" placeholder="Search..."/>
-            <input type="button" class="submit" value=" "/>
-        </div>
-    </form>
-    <!-- END RESPONSIVE QUICK SEARCH FORM -->
-</li>
-<li class="start">
-    <a href="http://127.0.0.1:8000/index.html">
-        <i class="icon-home"></i>
-        <span class="title">首页</span>
-    </a>
-</li>
-<li class="">
-    <a href="javascript:;">
-        <i class="icon-briefcase"></i>
-        <span class="title">新闻</span>
-        <span class="selected"></span>
-        <span class="arrow open"></span>
-    </a>
-    <ul class="sub-menu">
-    {% for column in  columns %}
-         {% if column.nav_display == True %}
+    <!-- BEGIN SIDEBAR MENU -->
+    <ul class="page-sidebar-menu">
         <li>
-            <a href="{{ column.get_absolute_url }}"><i class="icon-comments"></i>{{ column.name }} </a>
+            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+            <div class="sidebar-toggler hidden-phone"></div>
+            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
         </li>
-        {% endif %}
-    {% endfor %}
-    </ul>
-</li>
-<li class="">
-    <a href="javascript:;">
-        <i class="icon-user"></i>
-        <span class="title">博客</span>
-        <span class="selected"></span>
-        <span class="arrow open"></span>
-    </a>
-    <ul class="sub-menu">
-    {% for column in  columns %}
-        {% if column.home_display == True %}
         <li>
-            <a href="{{ column.get_absolute_url }}"><i class="icon-comments"></i>{{ column.name }} </a>
+            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+            <form class="sidebar-search">
+                <div class="input-box">
+                    <a href="javascript:;" class="remove"></a>
+                    <input type="text" placeholder="Search..."/>
+                    <input type="button" class="submit" value=" "/>
+                </div>
+            </form>
+            <!-- END RESPONSIVE QUICK SEARCH FORM -->
         </li>
-        {% endif %}
-    {% endfor %}
+        <li class="start">
+            <a href="http://127.0.0.1:8000/index.html">
+                <i class="icon-home"></i>
+                <span class="title">首页</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="javascript:;">
+                <i class="icon-briefcase"></i>
+                <span class="title">新闻</span>
+                <span class="selected"></span>
+                <span class="arrow open"></span>
+            </a>
+            <ul class="sub-menu">
+                {% for column in  columns %}
+                    {% if column.news_nav == True %}
+                        <li>
+                            <a href="{{ column.get_absolute_url }}"><i class="icon-comments"></i>{{ column.name }} </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+        <li class="">
+            <a href="javascript:;">
+                <i class="icon-user"></i>
+                <span class="title">博客</span>
+                <span class="selected"></span>
+                <span class="arrow open"></span>
+            </a>
+            <ul class="sub-menu">
+                {% for column in  columns %}
+                    {% if column.blog_nav == True %}
+                        <li>
+                            <a href="{{ column.get_absolute_url }}"><i class="icon-comments"></i>{{ column.name }} </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+        <li class="">
+            <a href="javascript:;">
+                <i class="icon-folder-open"></i>
+                <span class="title">归档</span>
+                <span class="selected"></span>
+                <span class="arrow open"></span>
+            </a>
+            <ul class="sub-menu">
+                {% for column in  columns %}
+                    {% if column.blog_nav == True %}
+                        <li>
+                            <a href="{{ column.get_absolute_url }}"><i class="icon-comments"></i>{{ column.name }} </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+        <li class="last ">
+            <a href="http://127.0.0.1:8000/aboutus.html">
+                <i class="icon-bar-chart"></i>
+                <span class="title">关于本站</span>
+            </a>
+        </li>
+        <li class="last ">
+            <a href="http://127.0.0.1:8000/declaration.html">
+                <i class="icon-file-text"></i>
+                <span class="title">免责声明</span>
+            </a>
+        </li>
     </ul>
-</li>
-<li class="last ">
-    <a href="http://127.0.0.1:8000/aboutus.html">
-        <i class="icon-bar-chart"></i>
-        <span class="title">关于本站</span>
-    </a>
-</li>
-<li class="last ">
-    <a href="http://127.0.0.1:8000/declaration.html">
-        <i class="icon-file-text"></i>
-        <span class="title">免责声明</span>
-    </a>
-</li>
-</ul>
-<!-- END SIDEBAR MENU -->
+    <!-- END SIDEBAR MENU -->
 </div>
 <!-- END SIDEBAR -->
 <!-- BEGIN PAGE -->
 <div class="page-content">
-<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-<div id="portlet-config" class="modal hide">
-    <div class="modal-header">
-        <button data-dismiss="modal" class="close" type="button"></button>
-        <h3>portlet Settings</h3>
-    </div>
-    <div class="modal-body">
-        <p>Here will be a configuration form</p>
-    </div>
-</div>
-<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-<!-- BEGIN PAGE CONTAINER-->
-<div class="container-fluid">
-<!-- BEGIN PAGE HEADER-->
-<div class="row-fluid">
-    <div class="span12">
-        <!-- BEGIN STYLE CUSTOMIZER -->
-        <div class="color-panel hidden-phone">
-            <div class="color-mode-icons icon-color"></div>
-            <div class="color-mode-icons icon-color-close"></div>
-            <div class="color-mode">
-                <p>THEME COLOR</p>
-                <ul class="inline">
-                    <li class="color-black current color-default" data-style="default"></li>
-                    <li class="color-blue" data-style="blue"></li>
-                    <li class="color-brown" data-style="brown"></li>
-                    <li class="color-purple" data-style="purple"></li>
-                    <li class="color-grey" data-style="grey"></li>
-                    <li class="color-white color-light" data-style="light"></li>
-                </ul>
-                <label>
-                    <span>Layout</span>
-                    <select class="layout-option m-wrap small">
-                        <option value="fluid" selected>Fluid</option>
-                        <option value="boxed">Boxed</option>
-                    </select>
-                </label>
-                <label>
-                    <span>Header</span>
-                    <select class="header-option m-wrap small">
-                        <option value="fixed" selected>Fixed</option>
-                        <option value="default">Default</option>
-                    </select>
-                </label>
-                <label>
-                    <span>Sidebar</span>
-                    <select class="sidebar-option m-wrap small">
-                        <option value="fixed">Fixed</option>
-                        <option value="default" selected>Default</option>
-                    </select>
-                </label>
-                <label>
-                    <span>Footer</span>
-                    <select class="footer-option m-wrap small">
-                        <option value="fixed">Fixed</option>
-                        <option value="default" selected>Default</option>
-                    </select>
-                </label>
-            </div>
+    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+    <div id="portlet-config" class="modal hide">
+        <div class="modal-header">
+            <button data-dismiss="modal" class="close" type="button"></button>
+            <h3>portlet Settings</h3>
         </div>
-        <!-- END BEGIN STYLE CUSTOMIZER -->
-        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-        <h3 class="page-title">
-            东方客家博客
-            <small>历史不会单纯的重复，但可以惊人得相似</small>
-        </h3>
-        <ul class="breadcrumb">
-            <li>
-                <i class="icon-home"></i>
-                <a href="index.html">Home</a>
-                <i class="icon-angle-right"></i>
-            </li>
-            <li>
-                <a href="#">Pages</a>
-                <i class="icon-angle-right"></i>
-            </li>
-            <li><a href="#">Blog Post</a></li>
-        </ul>
-        <!-- END PAGE TITLE & BREADCRUMB-->
+        <div class="modal-body">
+            <p>Here will be a configuration form</p>
+        </div>
     </div>
-</div>
-<!-- END PAGE HEADER-->
-<!-- BEGIN PAGE CONTENT-->
-<div class="row-fluid">
-    <div class="span12 blog-page">
+    <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+    <!-- BEGIN PAGE CONTAINER-->
+    <div class="container-fluid">
+        <!-- BEGIN PAGE HEADER-->
         <div class="row-fluid">
-            <div>
-                {% block content %}
-                {% endblock content %}
+            <div class="span12">
+                <!-- BEGIN STYLE CUSTOMIZER -->
+                <div class="color-panel hidden-phone">
+                    <div class="color-mode-icons icon-color"></div>
+                    <div class="color-mode-icons icon-color-close"></div>
+                    <div class="color-mode">
+                        <p>THEME COLOR</p>
+                        <ul class="inline">
+                            <li class="color-black current color-default" data-style="default"></li>
+                            <li class="color-blue" data-style="blue"></li>
+                            <li class="color-brown" data-style="brown"></li>
+                            <li class="color-purple" data-style="purple"></li>
+                            <li class="color-grey" data-style="grey"></li>
+                            <li class="color-white color-light" data-style="light"></li>
+                        </ul>
+                        <label>
+                            <span>Layout</span>
+                            <select class="layout-option m-wrap small">
+                                <option value="fluid" selected>Fluid</option>
+                                <option value="boxed">Boxed</option>
+                            </select>
+                        </label>
+                        <label>
+                            <span>Header</span>
+                            <select class="header-option m-wrap small">
+                                <option value="fixed" selected>Fixed</option>
+                                <option value="default">Default</option>
+                            </select>
+                        </label>
+                        <label>
+                            <span>Sidebar</span>
+                            <select class="sidebar-option m-wrap small">
+                                <option value="fixed">Fixed</option>
+                                <option value="default" selected>Default</option>
+                            </select>
+                        </label>
+                        <label>
+                            <span>Footer</span>
+                            <select class="footer-option m-wrap small">
+                                <option value="fixed">Fixed</option>
+                                <option value="default" selected>Default</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <!-- END BEGIN STYLE CUSTOMIZER -->
+                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                <h3 class="page-title">
+                    EthanCui
+                    <small>梦想是要有的，万一实现了呢</small>
+                </h3>
+                {% block home_Nav %}
+                {% endblock %}
+                <!-- END PAGE TITLE & BREADCRUMB-->
             </div>
-            <div class="span3 blog-sidebar">
-                <h2>Flickr</h2>
-                <ul class="unstyled blog-images">
-                    <li>
-                        <a class="fancybox-button" data-rel="fancybox-button" title="390 x 220 - keenthemes.com"
-                           href="media/image/1.jpg">
-                            <img alt="" src="media/image/1.jpg">
-                        </a>
-                    </li>
-                    <li><a href="#"><img alt="" src="media/image/2.jpg"></a></li>
-                    <li><a href="#"><img alt="" src="media/image/3.jpg"></a></li>
-                    <li><a href="#"><img alt="" src="media/image/4.jpg"></a></li>
-                    <li><a href="#"><img alt="" src="media/image/5.jpg"></a></li>
-                    <li><a href="#"><img alt="" src="media/image/6.jpg"></a></li>
-                    <li><a href="#"><img alt="" src="media/image/8.jpg"></a></li>
-                    <li><a href="#"><img alt="" src="media/image/10.jpg"></a></li>
-                    <li><a href="#"><img alt="" src="media/image/11.jpg"></a></li>
-                    <li><a href="#"><img alt="" src="media/image/1.jpg"></a></li>
-                    <li><a href="#"><img alt="" src="media/image/2.jpg"></a></li>
-                    <li><a href="#"><img alt="" src="media/image/7.jpg"></a></li>
-                </ul>
-                <div class="space20"></div>
-                <h2>Top Entiries</h2>
-
-                <div class="top-news">
-                    <a href="#" class="btn red">
-                        <span>Metronic News</span>
-                        <em>Posted on: April 16, 2013</em>
-                        <em>
-                            <i class="icon-tags"></i>
-                            Money, Business, Google
-                        </em>
-                        <i class="icon-briefcase top-news-icon"></i>
-                    </a>
-                    <a href="#" class="btn green">
-                        <span>Top Week</span>
-                        <em>Posted on: April 15, 2013</em>
-                        <em>
-                            <i class="icon-tags"></i>
-                            Internet, Music, People
-                        </em>
-                        <i class="icon-music top-news-icon"></i>
-                    </a>
-                    <a href="#" class="btn blue">
-                        <span>Gold Price Falls</span>
-                        <em>Posted on: April 14, 2013</em>
-                        <em>
-                            <i class="icon-tags"></i>
-                            USA, Business, Apple
-                        </em>
-                        <i class="icon-globe top-news-icon"></i>
-                    </a>
-                    <a href="#" class="btn yellow">
-                        <span>Study Abroad</span>
-                        <em>Posted on: April 13, 2013</em>
-                        <em>
-                            <i class="icon-tags"></i>
-                            Education, Students, Canada
-                        </em>
-                        <i class="icon-book top-news-icon"></i>
-                    </a>
-                    <a href="#" class="btn purple">
-                        <span>Top Destinations</span>
-                        <em>Posted on: April 12, 2013</em>
-                        <em>
-                            <i class="icon-tags"></i>
-                            Places, Internet, Google Map
-                        </em>
-                        <i class="icon-bolt top-news-icon"></i>
-                    </a>
-                </div>
-                <div class="space20"></div>
-                <h2>Blog Tags</h2>
-                <ul class="unstyled inline sidebar-tags">
-                    <li><a href="#"><i class="icon-tags"></i> Business</a></li>
-                    <li><a href="#"><i class="icon-tags"></i> Music</a></li>
-                    <li><a href="#"><i class="icon-tags"></i> Internet</a></li>
-                    <li><a href="#"><i class="icon-tags"></i> Money</a></li>
-                    <li><a href="#"><i class="icon-tags"></i> Google</a></li>
-                    <li><a href="#"><i class="icon-tags"></i> TV Shows</a></li>
-                    <li><a href="#"><i class="icon-tags"></i> Education</a></li>
-                    <li><a href="#"><i class="icon-tags"></i> People</a></li>
-                    <li><a href="#"><i class="icon-tags"></i> People</a></li>
-                    <li><a href="#"><i class="icon-tags"></i> Math</a></li>
-                    <li><a href="#"><i class="icon-tags"></i> Photos</a></li>
-                    <li><a href="#"><i class="icon-tags"></i> Electronics</a></li>
-                    <li><a href="#"><i class="icon-tags"></i> Apple</a></li>
-                    <li><a href="#"><i class="icon-tags"></i> Canada</a></li>
-                </ul>
-                <div class="space20"></div>
-                <h2>Tabs</h2>
-
-                <div class="tabbable tabbable-custom">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#tab_1_1">Section 1</a></li>
-                        <li class=""><a data-toggle="tab" href="#tab_1_2">Section 2</a></li>
-                        <li class=""><a data-toggle="tab" href="#tab_1_3">Section 3</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div id="tab_1_1" class="tab-pane active">
-                            <p>I'm in Section 1.</p>
-
-                            <p>
-                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-                                nisl ut
-                                aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
-                                vulputate velit
-                                esse molestie consequat.
-                            </p>
-                        </div>
-                        <div id="tab_1_2" class="tab-pane">
-                            <p>Howdy, I'm in Section 2.</p>
-
-                            <p>
-                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-                                nisl ut
-                                aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
-                                vulputate velit
-                                esse molestie consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
-                            </p>
-                        </div>
-                        <div id="tab_1_3" class="tab-pane">
-                            <p>Howdy, I'm in Section 3.</p>
-
-                            <p>
-                                Duis autem vel eum iriure dolor in hendrerit in vulputate.
-                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-                                nisl ut
-                                aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
-                                vulputate velit
-                                esse molestie consequat
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="space20"></div>
-                <h2>Recent Twitts</h2>
-
-                <div class="blog-twitter">
-                    <div class="blog-twitter-block">
-                        <a href="">@keenthemes</a>
-
-                        <p>At vero eos et accusamus et iusto odio.</p>
-                        <a href="#"><em>http://t.co/sBav7dm</em></a>
-                        <span>5 hours ago</span>
-                        <i class="icon-twitter blog-twiiter-icon"></i>
-                    </div>
-                    <div class="blog-twitter-block">
-                        <a href="">@keenthemes</a>
-
-                        <p>At vero eos et accusamus et iusto odio.</p>
-                        <a href="#"><em>http://t.co/sBav7dm</em></a>
-                        <span>7 hours ago</span>
-                        <i class="icon-twitter blog-twiiter-icon"></i>
-                    </div>
-                    <div class="blog-twitter-block">
-                        <a href="">@keenthemes</a>
-
-                        <p>At vero eos et accusamus et iusto odio.</p>
-                        <a href="#"><em>http://t.co/sBav7dm</em></a>
-                        <span>8 hours ago</span>
-                        <i class="icon-twitter blog-twiiter-icon"></i>
-                    </div>
-                </div>
-            </div>
-            <!--end span3-->
         </div>
+        <!-- END PAGE HEADER-->
+        <!-- BEGIN PAGE CONTENT-->
+        <div class="row-fluid">
+            <div class="span12 blog-page">
+                <div class="row-fluid">
+                    <div>
+                        {% block content %}
+                        {% endblock content %}
+                    </div>
+                    <div class="span3 blog-sidebar">
+                        <h2>热门博客</h2>
+
+                        <div class="top-news">
+                            {% block topArticles %}
+                            {% endblock %}
+                        </div>
+                        <div class="space20"></div>
+                        <h2>博客标签</h2>
+                        <ul class="unstyled inline sidebar-tags">
+                            {% for tag in tags %}
+                                <li><i class="icon-tags"></i> {{ tag.name }}</li>
+                            {% endfor %}
+                        </ul>
+                        <div class="space20"></div>
+                        <h2>Tabs</h2>
+
+                        <div class="tabbable tabbable-custom">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#tab_1_1">Section 1</a></li>
+                                <li class=""><a data-toggle="tab" href="#tab_1_2">Section 2</a></li>
+                                <li class=""><a data-toggle="tab" href="#tab_1_3">Section 3</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tab_1_1" class="tab-pane active">
+                                    <p>I'm in Section 1.</p>
+
+                                    <p>
+                                        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+                                        lobortis
+                                        nisl ut
+                                        aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
+                                        vulputate velit
+                                        esse molestie consequat.
+                                    </p>
+                                </div>
+                                <div id="tab_1_2" class="tab-pane">
+                                    <p>Howdy, I'm in Section 2.</p>
+
+                                    <p>
+                                        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+                                        lobortis
+                                        nisl ut
+                                        aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
+                                        vulputate velit
+                                        esse molestie consequat. Ut wisi enim ad minim veniam, quis nostrud exerci
+                                        tation.
+                                    </p>
+                                </div>
+                                <div id="tab_1_3" class="tab-pane">
+                                    <p>Howdy, I'm in Section 3.</p>
+
+                                    <p>
+                                        Duis autem vel eum iriure dolor in hendrerit in vulputate.
+                                        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+                                        lobortis
+                                        nisl ut
+                                        aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
+                                        vulputate velit
+                                        esse molestie consequat
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space20"></div>
+                        <h2>博客归档</h2>
+
+                        <div class="blog-twitter">
+                            <div class="blog-twitter-block">
+                                <a href="">@keenthemes</a>
+
+                                <p>At vero eos et accusamus et iusto odio.</p>
+                                <a href="#"><em>http://t.co/sBav7dm</em></a>
+                                <span>5 hours ago</span>
+                                <i class="icon-twitter blog-twiiter-icon"></i>
+                            </div>
+                            <div class="blog-twitter-block">
+                                <a href="">@keenthemes</a>
+
+                                <p>At vero eos et accusamus et iusto odio.</p>
+                                <a href="#"><em>http://t.co/sBav7dm</em></a>
+                                <span>7 hours ago</span>
+                                <i class="icon-twitter blog-twiiter-icon"></i>
+                            </div>
+                            <div class="blog-twitter-block">
+                                <a href="">@keenthemes</a>
+
+                                <p>At vero eos et accusamus et iusto odio.</p>
+                                <a href="#"><em>http://t.co/sBav7dm</em></a>
+                                <span>8 hours ago</span>
+                                <i class="icon-twitter blog-twiiter-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end span3-->
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT-->
     </div>
-</div>
-<!-- END PAGE CONTENT-->
-</div>
-<!-- END PAGE CONTAINER-->
+    <!-- END PAGE CONTAINER-->
 </div>
 <!-- END PAGE -->
 </div>
@@ -411,7 +347,7 @@
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- BEGIN CORE PLUGINS -->
 <script src="{% static "media/js/jquery-1.10.1.min.js" %}" type="text/javascript"></script>
-<script src="{% static "media/js/jquery-migrate-1.2.1.min.js"%}" type="text/javascript"></script>
+<script src="{% static "media/js/jquery-migrate-1.2.1.min.js" %}" type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
 <script src="{% static "media/js/jquery-ui-1.10.1.custom.min.js" %}" type="text/javascript"></script>
 <script src="{% static "media/js/bootstrap.min.js" %}" type="text/javascript"></script>
