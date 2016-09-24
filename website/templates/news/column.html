@@ -27,7 +27,7 @@
         <h2>{{ column.name }}</h2>
         栏目简介：{{ column.intro }}
         栏目文章列表：
-        {% for article in articles %}
+        {% for article in pagedArticles %}
             <div class="row-fluid">
                 <div class="span8 blog-article">
                     <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
@@ -42,6 +42,29 @@
                 </div>
             </div>
         {% endfor %}
+
+        <div class="pagination">
+    <span class="step-links">
+        {% if pagedArticles.has_previous %}
+            <a href="?page={{ pagedArticles.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ pagedArticles.number }} of {{ pagedArticles.paginator.num_pages }}.
+        </span>
+
+        {% if pagedArticles.has_next %}
+            <a href="?page={{ pagedArticles.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+        </div>
+        <div class="pagination pagination-right">
+            <ul>
+                {% for i in pageRange %}
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
         <hr>
     </div>
     <!--end span9-->
@@ -50,59 +73,59 @@
 {% block topArticles %}
     {% for article in topArticles %}
         {% if forloop.counter0 == 0 %}
-                        <a href="{{ article.get_absolute_url }}" class="btn red">
-                        <span>{{ article.title }}</span>
-                        <em>Posted on: {{ article.pub_date }}</em>
-                        <em>
-                            <i class="icon-tags"></i>
-                            Money, Business, Google
-                        </em>
-                        <i class="icon-briefcase top-news-icon"></i>
-                    </a>
+            <a href="{{ article.get_absolute_url }}" class="btn red">
+                <span>{{ article.title }}</span>
+                <em>Posted on: {{ article.pub_date }}</em>
+                <em>
+                    <i class="icon-tags"></i>
+                    Money, Business, Google
+                </em>
+                <i class="icon-briefcase top-news-icon"></i>
+            </a>
         {% endif %}
         {% if forloop.counter0 == 1 %}
-                    <a href="{{ article.get_absolute_url }}" class="btn green">
-                        <span>{{ article.title }}</span>
-                        <em>Posted on: {{ article.pub_date }}</em>
-                        <em>
-                            <i class="icon-tags"></i>
-                            Internet, Music, People
-                        </em>
-                        <i class="icon-music top-news-icon"></i>
-                    </a>
+            <a href="{{ article.get_absolute_url }}" class="btn green">
+                <span>{{ article.title }}</span>
+                <em>Posted on: {{ article.pub_date }}</em>
+                <em>
+                    <i class="icon-tags"></i>
+                    Internet, Music, People
+                </em>
+                <i class="icon-music top-news-icon"></i>
+            </a>
         {% endif %}
         {% if forloop.counter0 == 2 %}
-                    <a href="{{ article.get_absolute_url }}" class="btn blue">
-                        <span>{{ article.title }}</span>
-                        <em>Posted on: {{ article.pub_date }}</em>
-                        <em>
-                            <i class="icon-tags"></i>
-                            Internet, Music, People
-                        </em>
-                        <i class="icon-music top-news-icon"></i>
-                    </a>
+            <a href="{{ article.get_absolute_url }}" class="btn blue">
+                <span>{{ article.title }}</span>
+                <em>Posted on: {{ article.pub_date }}</em>
+                <em>
+                    <i class="icon-tags"></i>
+                    Internet, Music, People
+                </em>
+                <i class="icon-music top-news-icon"></i>
+            </a>
         {% endif %}
         {% if forloop.counter0 == 3 %}
-                    <a href="{{ article.get_absolute_url }}" class="btn yellow">
-                        <span>{{ article.title }}</span>
-                        <em>Posted on: {{ article.pub_date }}</em>
-                        <em>
-                            <i class="icon-tags"></i>
-                            Internet, Music, People
-                        </em>
-                        <i class="icon-music top-news-icon"></i>
-                    </a>
+            <a href="{{ article.get_absolute_url }}" class="btn yellow">
+                <span>{{ article.title }}</span>
+                <em>Posted on: {{ article.pub_date }}</em>
+                <em>
+                    <i class="icon-tags"></i>
+                    Internet, Music, People
+                </em>
+                <i class="icon-music top-news-icon"></i>
+            </a>
         {% endif %}
-        {% if forloop.counter0 == 3 %}
-                    <a href="{{ article.get_absolute_url }}" class="btn purple">
-                        <span>{{ article.title }}</span>
-                        <em>Posted on: {{ article.pub_date }}</em>
-                        <em>
-                            <i class="icon-tags"></i>
-                            Internet, Music, People
-                        </em>
-                        <i class="icon-music top-news-icon"></i>
-                    </a>
+        {% if forloop.counter0 == 4 %}
+            <a href="{{ article.get_absolute_url }}" class="btn purple">
+                <span>{{ article.title }}</span>
+                <em>Posted on: {{ article.pub_date }}</em>
+                <em>
+                    <i class="icon-tags"></i>
+                    Internet, Music, People
+                </em>
+                <i class="icon-music top-news-icon"></i>
+            </a>
         {% endif %}
     {% endfor %}
 {% endblock %}
