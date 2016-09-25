@@ -21,6 +21,7 @@ from DjangoUeditor import urls as DjangoUeditor_urls
 from website.views import index
 from website.views import column_detail
 from website.views import article_detail
+from website.views import aboutus
 from website.views import declaration
 from website.views import comment
 
@@ -34,5 +35,6 @@ urlpatterns = [
     url(r'^article/(?P<pk>\d+)/(?P<article_slug>[^/]+)/$', article_detail, name='article'),
     url(r'^article/(?P<pk>\d+)/(?P<article_slug>[^/]+)/comment$', comment, name='comment'),
 
+    url(r'^aboutus.html$', aboutus),
     url(r'^declaration.html$', declaration),
 ]

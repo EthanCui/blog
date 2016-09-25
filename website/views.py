@@ -43,11 +43,14 @@ def article_detail(request, pk, article_slug):
 
     if article_slug != article.slug:
         return redirect(article, permanent=True)
-    return render(request, 'news/article.html', {'article': article, 'comments': comments}, RequestContext(request, {'article': article, 'comments': comments}, processors=[get_default_data]))
+    return render(request, 'news/article.html', RequestContext(request, {'article': article, 'comments': comments}, processors=[get_default_data]))
+
+def aboutus(request):
+    return render(request, 'aboutus.html', RequestContext(request, {}, processors =[get_default_data]))
 
 def declaration(request):
     article = Article.objects.get(title='免责声明')
-    return render(request, 'declaration.html', {'article': article}, RequestContext(request, {'article': article}, processors=[get_default_data]))
+    return render(request, 'declaration.html', RequestContext(request, {'article': article}, processors=[get_default_data]))
 
 def comment(request,pk, article_slug):
     name = request.POST.get('name')
