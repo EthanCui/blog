@@ -12,7 +12,7 @@ import django_comments
 def get_default_data(request):
     columns = Column.objects.all()
     tags = Tag.objects.all()
-    topArticles = Article.objects.all()[0:4]
+    topArticles = Article.objects.all()[0:5]
     return {'columns': columns, 'tags': tags, 'topArticles': topArticles}
 
 def index(request):
