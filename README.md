@@ -16,10 +16,10 @@ METRONIC 前端模板
 1. 安装 apache2 和 mod_wsgi
 sudo apt-get install apache2
 
-# Python 2
+Python 2:
 sudo apt-get install libapache2-mod-wsgi
 
-# Python 3
+Python 3:
 sudo apt-get install libapache2-mod-wsgi-py3
 
 2.确认安装的apache2版本号
@@ -78,11 +78,10 @@ import sys
 
 from os.path import  dirname, abspath
 from django.core.wsgi import get_wsgi_application
-
-#同一台服务上部署多个django程序，需要指定settings文件
+同一台服务上部署多个django程序，需要指定settings文件
 PROJECT_DIR = dirname(dirname(abspath(__file__)))
 sys.path.insert(0, PROJECT_DIR)
-#os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cuihu.settings")
+注释掉这行os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cuihu.settings")
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "cuihu.settings"
 application = get_wsgi_application()
@@ -94,20 +93,15 @@ STATIC_URL 为静态文件的网址 STATIC_ROOT 为静态文件的根目录，
 MEDIA_URL 为用户上传文件夹的根目录，MEDIA_URL为对应的访问网址
 
 在settings中的设置
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# 公共的 static 文件，比如 jquery.js 可以放这里，这里面的文件夹不能包含 STATIC_ROOT
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "common_static"),
 )
 
-# upload folder
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 chmod 777 /需要写权限的文件夹路径/
 
@@ -129,3 +123,27 @@ create database `cuihu` character set utf8;
 python manage.py syncdb
 
 9.重启apache服务 service apache2 reload 或者 service apache2 restart
+
+
+常见的部署问题:
+1.	数据库版本问题
+Warning: Specified key was too long; max key length is 767 byte
+Mysql5.5版本上mysql varchar(255)长度限制为255,超过了会报错
+
+解决办法：升级mysql数据库到5.6
+mysql数据库从5.5升级到5.6
+apt-get remove mysql-server 卸载数据库
+apt-get autoremove 自动清理配置文件
+apt-get upgrade 更新软件源
+apt-get install mysql-server-5.6 安装新的数据库
+升级前注意导出好数据，升级后导入
+2.	Wsgi设置问题
+mod_wsgi (pid=29373): Target WSGI script '/home/MonkeyLogSite/MonkeyLogSite/wsgi.py' cannot be loaded as Python module., referer: http://10.210.140.47:8989/
+mod_wsgi (pid=29373): Exception occurred processing WSGI script '/home/MonkeyLogSite/MonkeyLogSite/wsgi.py'., referer: http://10.210.140.47:8989/
+
+解决办法：参照步骤4修改wsgi文件
+Apache错误日志查看：
+cat /var/log/apache2/error.log
+
+总结:部署时文件对应关系:
+sitename.conf --> wsgi.py --> settings.py --> urls.py --> views.py
