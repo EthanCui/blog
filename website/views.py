@@ -46,7 +46,8 @@ def article_detail(request, pk, article_slug):
     return render(request, 'news/article.html', RequestContext(request, {'article': article, 'comments': comments}, processors=[get_default_data]))
 
 def aboutus(request):
-    return render(request, 'aboutus.html', RequestContext(request, {}, processors =[get_default_data]))
+    article = Article.objects.get(title='部署方法')
+    return render(request, 'aboutus.html', RequestContext(request, {'article': article}, processors =[get_default_data]))
 
 def declaration(request):
     article = Article.objects.get(title='免责声明')
