@@ -24,6 +24,7 @@ from website.views import article_detail
 from website.views import aboutus
 from website.views import declaration
 from website.views import comment
+from website.views import archive
 
 urlpatterns = [
     url(r'^$', index, name='index'),
@@ -34,6 +35,8 @@ urlpatterns = [
     url(r'^column/(?P<column_slug>[^/]+)/$', column_detail, name='column'),
     url(r'^article/(?P<pk>\d+)/(?P<article_slug>[^/]+)/$', article_detail, name='article'),
     url(r'^article/(?P<pk>\d+)/(?P<article_slug>[^/]+)/comment$', comment, name='comment'),
+     # url(r'^/(?P<year>\d+)/(?P<month>\d+)/$', archive, name='archive'),
+    url(r'^(?P<year>\d+)/(?P<month>\d+)/$', archive, name='archive'),
 
     url(r'^aboutus.html$', aboutus),
     url(r'^declaration.html$', declaration),

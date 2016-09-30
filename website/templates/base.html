@@ -297,56 +297,6 @@
                     {% endfor %}
                 </ul>
                 <div class="space20"></div>
-                <h2>Tabs</h2>
-
-                <div class="tabbable tabbable-custom">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#tab_1_1">Section 1</a></li>
-                        <li class=""><a data-toggle="tab" href="#tab_1_2">Section 2</a></li>
-                        <li class=""><a data-toggle="tab" href="#tab_1_3">Section 3</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div id="tab_1_1" class="tab-pane active">
-                            <p>I'm in Section 1.</p>
-
-                            <p>
-                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-                                lobortis
-                                nisl ut
-                                aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
-                                vulputate velit
-                                esse molestie consequat.
-                            </p>
-                        </div>
-                        <div id="tab_1_2" class="tab-pane">
-                            <p>Howdy, I'm in Section 2.</p>
-
-                            <p>
-                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-                                lobortis
-                                nisl ut
-                                aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
-                                vulputate velit
-                                esse molestie consequat. Ut wisi enim ad minim veniam, quis nostrud exerci
-                                tation.
-                            </p>
-                        </div>
-                        <div id="tab_1_3" class="tab-pane">
-                            <p>Howdy, I'm in Section 3.</p>
-
-                            <p>
-                                Duis autem vel eum iriure dolor in hendrerit in vulputate.
-                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-                                lobortis
-                                nisl ut
-                                aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
-                                vulputate velit
-                                esse molestie consequat
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="space20"></div>
                 <h2>博客归档</h2>
 
                 <div class="blog-twitter">
@@ -358,22 +308,15 @@
                         <span>5 hours ago</span>
                         <i class="icon-twitter blog-twiiter-icon"></i>
                     </div>
+                    {% for year, month_list in archiveDic %}
                     <div class="blog-twitter-block">
-                        <a href="">@keenthemes</a>
-
-                        <p>At vero eos et accusamus et iusto odio.</p>
-                        <a href="#"><em>http://t.co/sBav7dm</em></a>
-                        <span>7 hours ago</span>
+                        <span><h4>{{ year }}年</h4></span>
+                        {% for month in month_list %}
+                        <a href="/{{ year }}/{{ month }}">{{ year }}年{{ month }}月</a>
+                         {% endfor %}
                         <i class="icon-twitter blog-twiiter-icon"></i>
                     </div>
-                    <div class="blog-twitter-block">
-                        <a href="">@keenthemes</a>
-
-                        <p>At vero eos et accusamus et iusto odio.</p>
-                        <a href="#"><em>http://t.co/sBav7dm</em></a>
-                        <span>8 hours ago</span>
-                        <i class="icon-twitter blog-twiiter-icon"></i>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <!--end span3-->

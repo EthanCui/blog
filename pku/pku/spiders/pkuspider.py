@@ -13,7 +13,7 @@ class pkuspider(CrawlSpider):
     base_url = 'http://poj.org/'
     solution_urls = {}
 
-    cookie = {"JSESSIONID": "F198055EC99A078A2341FD227D54F6EB"}
+    cookie = {"JSESSIONID": "B5F7F2554EAE2FB31663C7B44590E90A"}
     urls = ["http://poj.org/status?result=0&user_id=574394335",
             "http://poj.org/status?user_id=574394335&result=0&top=4024039",
             "http://poj.org/status?user_id=574394335&result=0&top=3907253",

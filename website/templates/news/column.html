@@ -2,7 +2,9 @@
 {% load staticfiles %}
 
 {% block title %}
+    {% if column %}
     {{ column.title }}
+    {% endif %}
 {% endblock title %}
 
 {% block home_Nav %}
@@ -17,15 +19,19 @@
             <i class="icon-angle-right"></i>
         </li>
         <li>
-            <span>{{ column.name }}</span>
+    {% if column %}
+    <span>{{ column.name }}</span>
+    {% endif %}
         </li>
     </ul>
 {% endblock %}
 
 {% block content %}
     <div class="span9 article-block">
+    {% if column %}
         <h2>{{ column.name }}</h2>
         栏目简介：{{ column.intro }}
+    {% endif %}
         栏目文章列表：
         {% for article in pagedArticles %}
             <div class="row-fluid">
