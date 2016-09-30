@@ -35,7 +35,6 @@ urlpatterns = [
     url(r'^column/(?P<column_slug>[^/]+)/$', column_detail, name='column'),
     url(r'^article/(?P<pk>\d+)/(?P<article_slug>[^/]+)/$', article_detail, name='article'),
     url(r'^article/(?P<pk>\d+)/(?P<article_slug>[^/]+)/comment$', comment, name='comment'),
-     # url(r'^/(?P<year>\d+)/(?P<month>\d+)/$', archive, name='archive'),
     url(r'^(?P<year>\d+)/(?P<month>\d+)/$', archive, name='archive'),
 
     url(r'^aboutus.html$', aboutus),

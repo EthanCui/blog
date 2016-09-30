@@ -14,7 +14,7 @@ def get_default_data(request):
     columns = Column.objects.all()
     tags = Tag.objects.all()
     topArticles = Article.objects.all()[0:5]
-    archiveList = Article.objects.datetimes('pub_date', 'month', order='DESC', tzinfo= timezone('Asia/Shanghai'))
+    archiveList = Article.objects.datetimes('pub_date', 'month', order='DESC')
     archiveDic = defaultdict(list)
     for d in archiveList:
         archiveDic[d.year].append(d.month)
