@@ -29,10 +29,10 @@
 {% block content %}
     <div class="span9 article-block">
     {% if column %}
-        <h2>{{ column.name }}</h2>
         栏目简介：{{ column.intro }}
+        <br/>
+        <br/>
     {% endif %}
-        栏目文章列表：
         {% for article in pagedArticles %}
             <div class="row-fluid">
                 <div class="span8 blog-article">

@@ -22,13 +22,15 @@ def get_default_data(request):
     return {'columns': columns, 'tags': tags, 'topArticles': topArticles, 'archiveDic': archiveDic}
 
 def index(request):
-    return render(request, 'index.html', RequestContext(request, {}, processors =[get_default_data]))
+    toppestArticle = Article.objects.all()[0]
+    comments = django_comments.models.Comment.objects.filter(object_pk=toppestArticle.id)
+    return render(request, 'index.html', RequestContext(request, {'toppestArticle': toppestArticle, 'comments': comments}, processors =[get_default_data]))
 
 def column_detail(request, column_slug):
     page = request.GET.get('page')
     column = Column.objects.get(slug=column_slug)
     articles = column.article_set.all().order_by('-pub_date')
-    paginator = Paginator(articles, 10)
+    paginator = Paginator(articles, 20)
 
     try:
         pagedArticles = paginator.page(page)
