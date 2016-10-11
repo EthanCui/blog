@@ -77,8 +77,7 @@
                         </a>
 
                         <div class="media-body">
-                            <h4 class="media-heading">{{ comment.user_name }} <span>2 days ago / <a
-                                    href="#">Reply</a></span></h4>
+                            <h4 class="media-heading">{{ comment.user_name }} <span> {{ comment.submit_date }} </span></h4>
 
                             <p>{{ comment.comment }}</p>
                         </div>
@@ -95,7 +94,7 @@
                 </a>
 
                 <div class="media-body">
-                    <h4 class="media-heading">{{ comment.user_name }} 说：<span>July 5,2013 / <a href="#">Reply</a></span>
+                    <h4 class="media-heading">{{ comment.user_name }} 说：<span> {{ comment.submit_date }} </span>
                     </h4>
 
                     <p>{{ comment.comment }}</p>
